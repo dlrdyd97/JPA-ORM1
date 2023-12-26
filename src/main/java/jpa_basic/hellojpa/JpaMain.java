@@ -5,6 +5,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class JpaMain {
@@ -20,14 +22,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-//            Member member = em.find(Member.class, 1L);
-//            member.setName("helloA");
-//            tx.commit();
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .getResultList();
-            for (Member member : result) {
-                System.out.println("member = " + member.getName());
-            }
+            Member member = new Member();
+            member.setId(1L);
+            member.setUsername("A");
+            member.setRoleType(RoleType.USER);
+            member.setTestDate(LocalDate.now());
+            member.setTestDateTime(LocalDateTime.now());
+            em.persist(member);
+            tx.commit();
         }catch (Exception e){
             tx.rollback();
         }finally {
