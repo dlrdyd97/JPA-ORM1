@@ -7,27 +7,22 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
+
 public class Member {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MEMBER_ID")
     private Long id;
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
-    private Integer age;
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
 
-    private LocalDate testDate;
-    private LocalDateTime testDateTime;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
 
-    @Transient
-    private int temp;
-    @Lob
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -45,67 +40,11 @@ public class Member {
         this.username = username;
     }
 
-    public Integer getAge() {
-        return age;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public int getTemp() {
-        return temp;
-    }
-
-    public void setTemp(int temp) {
-        this.temp = temp;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getTestDate() {
-        return testDate;
-    }
-
-    public void setTestDate(LocalDate testDate) {
-        this.testDate = testDate;
-    }
-
-    public LocalDateTime getTestDateTime() {
-        return testDateTime;
-    }
-
-    public void setTestDateTime(LocalDateTime testDateTime) {
-        this.testDateTime = testDateTime;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
