@@ -29,11 +29,11 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+            member.changeTeam(team);
             em.persist(member);
 
             // 양방향 연관관계에는 양쪽에 값을 세팅해주는것이 좋음
-            team.getMembers().add(member);
+//            team.getMembers().add(member);
 
             Team findTeam = em.find(Team.class, team.getId());
             List<Member> members = findTeam.getMembers();
