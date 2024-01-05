@@ -23,19 +23,12 @@ public class JpaMain {
 
         try {
 
-            Movie movie = new Movie();
-            movie.setDirector("함형");
-            movie.setActor("강태");
-            movie.setName("우끽");
-            movie.setPrice(10000);
+            Member member = new Member();
+            member.setCreateBy("kim");
+            member.setCreateDate(LocalDateTime.now());
+            member.setUsername("user1");
 
-            em.persist(movie);
-            
-            em.flush();
-            em.clear();
-
-            Movie findMovie = em.find(Movie.class, movie.getId());
-            System.out.println("findMovie = " + findMovie);
+            em.persist(member);
 
             tx.commit();
         }catch (Exception e){
