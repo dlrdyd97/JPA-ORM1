@@ -26,9 +26,8 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
-    @ManyToMany
-    @JoinTable(name = "MEMBER_PRODUCT")
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
